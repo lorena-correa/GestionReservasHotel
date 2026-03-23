@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GestionReservasHotel.Modelos
 {
-    internal class Reserva
+    public class Reserva
     {
         public string NombreCliente { get; set; }
         public string DocumentoCliente { get; set; }
