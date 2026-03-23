@@ -19,7 +19,20 @@ namespace GestionReservasHotel.Modelos
         {
             return TarifaPorNoche * DuracionEstadia;
         }
+        public virtual void ValidarDatos()
+        {
+            if (string.IsNullOrWhiteSpace(NombreCliente))
+                throw new Exception("El nombre del cliente es obligatorio");
 
+            if (NumeroHabitacion <= 0)
+                throw new Exception("Número de habitación inválido");
+
+            if (DuracionEstadia <= 1)
+                throw new Exception("La duración debe ser mayor a 1 noche");
+
+            if (TarifaPorNoche <= 0)
+                throw new Exception("La tarifa debe ser mayor a 0");
+        }
 
     }
 }
