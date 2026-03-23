@@ -34,7 +34,19 @@ namespace GestionReservasHotel
                 else
                     reserva = new HabitacionEstandar();
 
-                
+                reserva.NombreCliente = txtNombreCliente.Text;
+                reserva.DocumentoCliente = txtDocumento.Text;
+                reserva.NumeroHabitacion = int.Parse(txtNumeroHabitacion.Text);
+                reserva.FechaReserva = dtpFechaReserva.Value;
+                reserva.DuracionEstadia = int.Parse(txtDuracion.Text);
+                reserva.TarifaPorNoche = decimal.Parse(txtTarifa.Text);
+
+                servicio.Agregar(reserva);
+
+                MessageBox.Show("Reserva agregada correctamente");
+
+                ActualizarTabla();
+                LimpiarCampos();
             }
             catch (Exception ex)
             {
@@ -42,5 +54,22 @@ namespace GestionReservasHotel
             }
 
         }
+        private void ActualizarTabla()
+        {
+            dgvReservas.DataSource = null;
+            dgvReservas.DataSource = servicio.ObtenerTodas();
+        }
+        //Limpiar todos los campos
+        private void LimpiarCampos()
+        {
+            txtNombreCliente.Clear();
+            txtDocumento.Clear();
+            txtNumeroHabitacion.Clear();
+            txtDuracion.Clear();
+            txtTarifa.Clear();
+            txtObservaciones.Clear();
+            cmbTipoHabitacion.SelectedIndex = -1;
+        }
+
     }
 }
