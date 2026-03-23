@@ -74,6 +74,7 @@
             btnLimpiar.TabIndex = 43;
             btnLimpiar.Text = "Limpiar";
             btnLimpiar.UseVisualStyleBackColor = true;
+            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // btnEliminar
             // 
@@ -85,6 +86,7 @@
             btnEliminar.TabIndex = 42;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnEditar
             // 
@@ -116,6 +118,7 @@
             dgvReservas.Name = "dgvReservas";
             dgvReservas.Size = new Size(675, 93);
             dgvReservas.TabIndex = 39;
+            dgvReservas.CellClick += dgvReservas_CellClick;
             // 
             // lblObservaciones
             // 

@@ -71,5 +71,42 @@ namespace GestionReservasHotel
             cmbTipoHabitacion.SelectedIndex = -1;
         }
 
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvReservas.CurrentRow == null)
+                    throw new Exception("Seleccione una reserva");
+
+                int numeroHabitacion = Convert.ToInt32(dgvReservas.CurrentRow.Cells["NumeroHabitacion"].Value);
+
+                servicio.Eliminar(numeroHabitacion);
+
+                MessageBox.Show("Reserva eliminada");
+
+                ActualizarTabla();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dgvReservas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvReservas.CurrentRow != null)
+            {
+                txtNombreCliente.Text = dgvReservas.CurrentRow.Cells["NombreCliente"].Value.ToString();
+                txtDocumento.Text = dgvReservas.CurrentRow.Cells["DocumentoCliente"].Value.ToString();
+                txtNumeroHabitacion.Text = dgvReservas.CurrentRow.Cells["NumeroHabitacion"].Value.ToString();
+                txtDuracion.Text = dgvReservas.CurrentRow.Cells["DuracionEstadia"].Value.ToString();
+                txtTarifa.Text = dgvReservas.CurrentRow.Cells["TarifaPorNoche"].Value.ToString();
+            }
+        }
     }
 }
