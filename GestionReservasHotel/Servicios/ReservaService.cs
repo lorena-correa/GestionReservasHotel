@@ -25,5 +25,24 @@ namespace GestionReservasHotel.Servicios
             reservas.Add(nueva);
         }
 
+        public void Eliminar(int numeroHabitacion)
+        {
+            var reserva = reservas.FirstOrDefault(r => r.NumeroHabitacion == numeroHabitacion);
+
+            if (reserva == null)
+                throw new Exception("Reserva no encontrada");
+
+            reservas.Remove(reserva);
+        }
+
+        private bool ExisteConflicto(Reserva nueva)
+        {
+            return reservas.Any(r =>
+                r.NumeroHabitacion == nueva.NumeroHabitacion &&
+                r.FechaReserva <= nueva.FechaReserva.AddDays(nueva.DuracionEstadia) &&
+                nueva.FechaReserva <= r.FechaReserva.AddDays(r.DuracionEstadia)
+            );
+        }
+
     }
 }
