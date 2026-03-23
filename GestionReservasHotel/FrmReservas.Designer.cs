@@ -38,7 +38,7 @@
             txtObservaciones = new TextBox();
             txtTarifa = new TextBox();
             lblTarifa = new Label();
-            textDuracion = new TextBox();
+            txtDuracion = new TextBox();
             lblDuracion = new Label();
             lblFechaReserva = new Label();
             dtpFechaReserva = new DateTimePicker();
@@ -112,9 +112,9 @@
             // dgvReservas
             // 
             dgvReservas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvReservas.Location = new Point(52, 315);
+            dgvReservas.Location = new Point(59, 315);
             dgvReservas.Name = "dgvReservas";
-            dgvReservas.Size = new Size(697, 93);
+            dgvReservas.Size = new Size(675, 93);
             dgvReservas.TabIndex = 39;
             // 
             // lblObservaciones
@@ -156,13 +156,13 @@
             lblTarifa.TabIndex = 35;
             lblTarifa.Text = "Tarifa por Noche: ";
             // 
-            // textDuracion
+            // txtDuracion
             // 
-            textDuracion.Font = new Font("Calibri", 11.25F);
-            textDuracion.Location = new Point(549, 106);
-            textDuracion.Name = "textDuracion";
-            textDuracion.Size = new Size(100, 26);
-            textDuracion.TabIndex = 34;
+            txtDuracion.Font = new Font("Calibri", 11.25F);
+            txtDuracion.Location = new Point(549, 106);
+            txtDuracion.Name = "txtDuracion";
+            txtDuracion.Size = new Size(100, 26);
+            txtDuracion.TabIndex = 34;
             // 
             // lblDuracion
             // 
@@ -299,7 +299,7 @@
             Controls.Add(txtObservaciones);
             Controls.Add(txtTarifa);
             Controls.Add(lblTarifa);
-            Controls.Add(textDuracion);
+            Controls.Add(txtDuracion);
             Controls.Add(lblDuracion);
             Controls.Add(lblFechaReserva);
             Controls.Add(dtpFechaReserva);
@@ -330,7 +330,7 @@
         private TextBox txtObservaciones;
         private TextBox txtTarifa;
         private Label lblTarifa;
-        private TextBox textDuracion;
+        private TextBox txtDuracion;
         private Label lblDuracion;
         private Label lblFechaReserva;
         private DateTimePicker dtpFechaReserva;
