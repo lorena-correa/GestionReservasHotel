@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace GestionReservasHotel.Modelos
 {
-    internal class HabitacionEstandar
+    public class HabitacionEstandar : Reserva
     {
+        public override decimal CalcularCostoTotal()
+        {
+            return base.CalcularCostoTotal();
+        }
     }
 }
