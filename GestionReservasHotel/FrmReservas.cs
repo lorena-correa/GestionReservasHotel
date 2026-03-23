@@ -22,6 +22,24 @@ namespace GestionReservasHotel
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (cmbTipoHabitacion.SelectedItem == null)
+                    throw new Exception("Seleccione un tipo de habitación");
+
+                Reserva reserva;
+
+                if (cmbTipoHabitacion.SelectedItem.ToString() == "VIP")
+                    reserva = new HabitacionVIP();
+                else
+                    reserva = new HabitacionEstandar();
+
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
     }
