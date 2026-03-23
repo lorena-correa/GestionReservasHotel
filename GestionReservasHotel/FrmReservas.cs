@@ -108,5 +108,40 @@ namespace GestionReservasHotel
                 txtTarifa.Text = dgvReservas.CurrentRow.Cells["TarifaPorNoche"].Value.ToString();
             }
         }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvReservas.CurrentRow == null)
+                    throw new Exception("Seleccione una reserva");
+
+                Reserva reserva;
+
+                if (cmbTipoHabitacion.SelectedItem.ToString() == "VIP")
+                    reserva = new HabitacionVIP();
+                else
+                    reserva = new HabitacionEstandar();
+
+                reserva.NombreCliente = txtNombreCliente.Text;
+                reserva.DocumentoCliente = txtDocumento.Text;
+                reserva.NumeroHabitacion = int.Parse(txtNumeroHabitacion.Text);
+                reserva.FechaReserva = dtpFechaReserva.Value;
+                reserva.DuracionEstadia = int.Parse(txtDuracion.Text);
+                reserva.TarifaPorNoche = decimal.Parse(txtTarifa.Text);
+
+                servicio.Eliminar(reserva.NumeroHabitacion); // elimina el viejo
+                servicio.Agregar(reserva); // agrega el nuevo
+
+                MessageBox.Show("Reserva editada correctamente");
+
+                ActualizarTabla();
+                LimpiarCampos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
