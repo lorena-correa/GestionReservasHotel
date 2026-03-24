@@ -14,6 +14,7 @@ namespace GestionReservasHotel.Modelos
         public DateTime FechaReserva { get; set; }
         public int DuracionEstadia { get; set; }
         public decimal TarifaPorNoche { get; set; }
+        public string TipoHabitacion { get; set; }
 
         public virtual decimal CalcularCostoTotal()
         {

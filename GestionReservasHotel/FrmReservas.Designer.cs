@@ -202,7 +202,7 @@
             // 
             cmbTipoHabitacion.Font = new Font("Calibri", 11.25F);
             cmbTipoHabitacion.FormattingEnabled = true;
-            cmbTipoHabitacion.Items.AddRange(new object[] { "Estándar", "", "VIP" });
+            cmbTipoHabitacion.Items.AddRange(new object[] { "Estándar", "VIP" });
             cmbTipoHabitacion.Location = new Point(235, 200);
             cmbTipoHabitacion.Name = "cmbTipoHabitacion";
             cmbTipoHabitacion.Size = new Size(100, 26);

@@ -34,6 +34,17 @@ namespace GestionReservasHotel
                 else
                     reserva = new HabitacionEstandar();
 
+                if (cmbTipoHabitacion.SelectedItem.ToString() == "VIP")
+                {
+                    reserva = new HabitacionVIP();
+                    reserva.TipoHabitacion = "VIP";
+                }
+                else
+                {
+                    reserva = new HabitacionEstandar();
+                    reserva.TipoHabitacion = "Estandar";
+                }
+
                 reserva.NombreCliente = txtNombreCliente.Text;
                 reserva.DocumentoCliente = txtDocumento.Text;
                 reserva.NumeroHabitacion = int.Parse(txtNumeroHabitacion.Text);
@@ -101,11 +112,18 @@ namespace GestionReservasHotel
         {
             if (dgvReservas.CurrentRow != null)
             {
-                txtNombreCliente.Text = dgvReservas.CurrentRow.Cells["NombreCliente"].Value.ToString();
-                txtDocumento.Text = dgvReservas.CurrentRow.Cells["DocumentoCliente"].Value.ToString();
-                txtNumeroHabitacion.Text = dgvReservas.CurrentRow.Cells["NumeroHabitacion"].Value.ToString();
-                txtDuracion.Text = dgvReservas.CurrentRow.Cells["DuracionEstadia"].Value.ToString();
-                txtTarifa.Text = dgvReservas.CurrentRow.Cells["TarifaPorNoche"].Value.ToString();
+                txtNombreCliente.Text = dgvReservas.CurrentRow.Cells["NombreCliente"].Value?.ToString();
+                txtDocumento.Text = dgvReservas.CurrentRow.Cells["DocumentoCliente"].Value?.ToString();
+                txtNumeroHabitacion.Text = dgvReservas.CurrentRow.Cells["NumeroHabitacion"].Value?.ToString();
+                txtDuracion.Text = dgvReservas.CurrentRow.Cells["DuracionEstadia"].Value?.ToString();
+                txtTarifa.Text = dgvReservas.CurrentRow.Cells["TarifaPorNoche"].Value?.ToString();
+
+                var tipo = dgvReservas.CurrentRow.Cells["TipoHabitacion"].Value;
+
+                if (tipo != null)
+                    cmbTipoHabitacion.SelectedItem = tipo.ToString();
+                else
+                    cmbTipoHabitacion.SelectedIndex = -1;
             }
         }
 
@@ -116,12 +134,21 @@ namespace GestionReservasHotel
                 if (dgvReservas.CurrentRow == null)
                     throw new Exception("Seleccione una reserva");
 
+                if (cmbTipoHabitacion.SelectedItem == null)
+                    throw new Exception("Seleccione un tipo de habitación");
+
                 Reserva reserva;
 
                 if (cmbTipoHabitacion.SelectedItem.ToString() == "VIP")
+                {
                     reserva = new HabitacionVIP();
+                    reserva.TipoHabitacion = "VIP";
+                }
                 else
+                {
                     reserva = new HabitacionEstandar();
+                    reserva.TipoHabitacion = "Estandar";
+                }
 
                 reserva.NombreCliente = txtNombreCliente.Text;
                 reserva.DocumentoCliente = txtDocumento.Text;
@@ -130,8 +157,12 @@ namespace GestionReservasHotel
                 reserva.DuracionEstadia = int.Parse(txtDuracion.Text);
                 reserva.TarifaPorNoche = decimal.Parse(txtTarifa.Text);
 
-                servicio.Eliminar(reserva.NumeroHabitacion); // elimina el viejo
-                servicio.Agregar(reserva); // agrega el nuevo
+                //Elimina ell viejo
+                int numeroOriginal = Convert.ToInt32(dgvReservas.CurrentRow.Cells["NumeroHabitacion"].Value);
+                servicio.Eliminar(numeroOriginal);
+
+                //Agrega lo nuevo editado
+                servicio.Agregar(reserva); 
 
                 MessageBox.Show("Reserva editada correctamente");
 
