@@ -121,7 +121,7 @@ namespace GestionReservasHotel
                 var tipo = dgvReservas.CurrentRow.Cells["TipoHabitacion"].Value;
 
                 if (tipo != null)
-                    cmbTipoHabitacion.Text = tipo.ToString(); // 🔥 AQUÍ ESTÁ LA CORRECCIÓN
+                    cmbTipoHabitacion.Text = tipo.ToString();
                 else
                     cmbTipoHabitacion.SelectedIndex = -1;
             }
