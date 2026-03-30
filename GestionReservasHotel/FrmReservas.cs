@@ -121,7 +121,7 @@ namespace GestionReservasHotel
                 var tipo = dgvReservas.CurrentRow.Cells["TipoHabitacion"].Value;
 
                 if (tipo != null)
-                    cmbTipoHabitacion.SelectedItem = tipo.ToString();
+                    cmbTipoHabitacion.Text = tipo.ToString(); // 🔥 AQUÍ ESTÁ LA CORRECCIÓN
                 else
                     cmbTipoHabitacion.SelectedIndex = -1;
             }
@@ -134,12 +134,12 @@ namespace GestionReservasHotel
                 if (dgvReservas.CurrentRow == null)
                     throw new Exception("Seleccione una reserva");
 
-                if (cmbTipoHabitacion.SelectedItem == null)
+                if (string.IsNullOrWhiteSpace(cmbTipoHabitacion.Text))
                     throw new Exception("Seleccione un tipo de habitación");
 
                 Reserva reserva;
 
-                if (cmbTipoHabitacion.SelectedItem.ToString() == "VIP")
+                if (cmbTipoHabitacion.Text == "VIP")
                 {
                     reserva = new HabitacionVIP();
                     reserva.TipoHabitacion = "VIP";
@@ -157,12 +157,9 @@ namespace GestionReservasHotel
                 reserva.DuracionEstadia = int.Parse(txtDuracion.Text);
                 reserva.TarifaPorNoche = decimal.Parse(txtTarifa.Text);
 
-                //Elimina ell viejo
                 int numeroOriginal = Convert.ToInt32(dgvReservas.CurrentRow.Cells["NumeroHabitacion"].Value);
                 servicio.Eliminar(numeroOriginal);
-
-                //Agrega lo nuevo editado
-                servicio.Agregar(reserva); 
+                servicio.Agregar(reserva);
 
                 MessageBox.Show("Reserva editada correctamente");
 

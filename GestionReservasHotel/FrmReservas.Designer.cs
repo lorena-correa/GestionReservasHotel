@@ -115,9 +115,9 @@
             // dgvReservas
             // 
             dgvReservas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvReservas.Location = new Point(59, 315);
+            dgvReservas.Location = new Point(26, 315);
             dgvReservas.Name = "dgvReservas";
-            dgvReservas.Size = new Size(675, 93);
+            dgvReservas.Size = new Size(744, 93);
             dgvReservas.TabIndex = 39;
             dgvReservas.CellClick += dgvReservas_CellClick;
             // 
